@@ -1,4 +1,4 @@
-> **Demo run** — submitted at `20260401-154650 UTC`
+> **Demo run** — submitted at `20260401-142803 UTC`
 
 
 # SR-060 | Emitir Duplicata Escritural – por comando do  Sacador (Upload de arquivo e preenchimento manual) - inclui "Gestão de  Vínculos do Sacado (Sacador x Sacado)"
