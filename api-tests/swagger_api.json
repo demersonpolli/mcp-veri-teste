@@ -1,0 +1,1306 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "GRC API - Título",
+    "description": "Rotas GRC - Título",
+    "version": "v1"
+  },
+  "paths": {
+    "/InclusaoTitulo": {
+      "post": {
+        "tags": [
+          "InclusaoTitulo"
+        ],
+        "summary": "Incluir títulos",
+        "requestBody": {
+          "description": "Informações utilizadas para gerar os arquivos de retorno",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InclusaoTitulosDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InclusaoTitulosDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InclusaoTitulosDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/InclusaoTituloAdf": {
+      "post": {
+        "tags": [
+          "InclusaoTituloAdf"
+        ],
+        "summary": "Incluir títulos",
+        "requestBody": {
+          "description": "Informações utilizadas para gerar os arquivos de retorno",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InclusaoTitulosAdfDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InclusaoTitulosAdfDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/InclusaoTitulosAdfDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/Transacao/consulta-por-controle/{controle}": {
+      "get": {
+        "tags": [
+          "Transacao"
+        ],
+        "summary": "Recupera as informações da transação pelo controle da instituição financeira",
+        "parameters": [
+          {
+            "name": "controle",
+            "in": "path",
+            "description": "Controle da instituição financeira",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoTransacaoDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoTransacaoDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoTransacaoDto"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    },
+    "/api/Transacao/consulta-por-chave/{chaveTransacao}": {
+      "get": {
+        "tags": [
+          "Transacao"
+        ],
+        "summary": "Recupera as informações da transação pela chave da transação",
+        "parameters": [
+          {
+            "name": "chaveTransacao",
+            "in": "path",
+            "description": "Chave da transação",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoTransacaoDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoTransacaoDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetornoTransacaoDto"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "bearer": [ ]
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Ancora": {
+        "required": [
+          "cpfCnpj",
+          "tipo"
+        ],
+        "type": "object",
+        "properties": {
+          "tipo": {
+            "type": "number",
+            "description": "Tipo do Ancora\r\n1 - CPF\r\n2 - CNPJ",
+            "format": "double"
+          },
+          "cpfCnpj": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Número do CPF/CNPJ do Âncora"
+          },
+          "nome": {
+            "type": "string",
+            "description": "Nome do Âncora",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Dados do Ancora"
+      },
+      "Carteira": {
+        "enum": [
+          "NaoInformada",
+          "Desconto",
+          "CessaoDeCreditoCompra",
+          "AdiantamentoFornecedor",
+          "CobrancaSimples",
+          "CobrancaCaucionada",
+          "CobrancaVinculada",
+          "Vendor"
+        ],
+        "type": "string"
+      },
+      "Especie": {
+        "enum": [
+          "NaoInformado",
+          "Cheque",
+          "DuplicataMercantil",
+          "DuplicataDeServico",
+          "NotaPromissoria",
+          "Recibo",
+          "ApoliceDeSeguro",
+          "CartaoCredito",
+          "BoletoDepositoAporte",
+          "Outros"
+        ],
+        "type": "string"
+      },
+      "Fornecedor": {
+        "required": [
+          "agencia",
+          "banco",
+          "conta",
+          "cpfCnpj",
+          "tipo"
+        ],
+        "type": "object",
+        "properties": {
+          "banco": {
+            "type": "number",
+            "description": "Código do Banco",
+            "format": "double"
+          },
+          "agencia": {
+            "type": "number",
+            "description": "Código da agência",
+            "format": "double"
+          },
+          "digitoVerificadorAgencia": {
+            "type": "string",
+            "description": "Dígito verificador da agência",
+            "nullable": true
+          },
+          "conta": {
+            "type": "number",
+            "description": "Código da conta",
+            "format": "double"
+          },
+          "tipo": {
+            "type": "number",
+            "description": "Tipo do Fornecedor\r\n1 - CPF\r\n2 - CNPJ",
+            "format": "double"
+          },
+          "cpfCnpj": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Número do CPF/CNPJ do fornecedor"
+          },
+          "nome": {
+            "type": "string",
+            "description": "Nome do fornecedor",
+            "nullable": true
+          },
+          "endereco": {
+            "type": "string",
+            "description": "Endereço do fornecedor",
+            "nullable": true
+          },
+          "numero": {
+            "type": "string",
+            "description": "Endereço do fornecedor",
+            "nullable": true
+          },
+          "cep": {
+            "type": "integer",
+            "description": "Cep do fornecedor",
+            "format": "int32",
+            "nullable": true
+          },
+          "cidade": {
+            "type": "string",
+            "description": "Cidade do fornecedor",
+            "nullable": true
+          },
+          "uf": {
+            "$ref": "#/components/schemas/UnidadeFederacaoSigla"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Dados do Fornecedor"
+      },
+      "InclusaoTituloDto": {
+        "required": [
+          "aceite",
+          "cepPagador",
+          "cidadePagador",
+          "emissao",
+          "enderecoPagador",
+          "especie",
+          "nomePagador",
+          "numeroInscricaoPagador",
+          "seuNumero",
+          "tipoAbatimento",
+          "tipoDesconto",
+          "tipoInscricaoPagador",
+          "tipoMora",
+          "tipoMulta",
+          "tipoPagamento",
+          "tipoPostagem",
+          "tipoProtesto",
+          "tipoValorMaximo",
+          "tipoValorMinimo",
+          "ufPagador",
+          "valorTitulo",
+          "vencimento"
+        ],
+        "type": "object",
+        "properties": {
+          "vencimento": {
+            "type": "string",
+            "description": "Data de vencimento",
+            "format": "date-time"
+          },
+          "dataLimiteDesconto": {
+            "type": "string",
+            "description": "Data limite de desconto",
+            "format": "date-time",
+            "nullable": true
+          },
+          "tipoDesconto": {
+            "$ref": "#/components/schemas/TipoDesconto"
+          },
+          "valorDesconto": {
+            "type": "number",
+            "description": "Valor do desconto",
+            "format": "double"
+          },
+          "tipoAbatimento": {
+            "$ref": "#/components/schemas/TipoAbatimento"
+          },
+          "valorAbatimento": {
+            "type": "number",
+            "description": "Valor do abatimento",
+            "format": "double"
+          },
+          "valorTitulo": {
+            "type": "number",
+            "description": "Valor do título",
+            "format": "double"
+          },
+          "seuNumero": {
+            "maxLength": 44,
+            "minLength": 1,
+            "type": "string",
+            "description": "Seu número"
+          },
+          "tipoProtesto": {
+            "$ref": "#/components/schemas/TipoProtesto"
+          },
+          "prazoProtesto": {
+            "type": "integer",
+            "description": "Prazo protesto",
+            "format": "int32"
+          },
+          "emissao": {
+            "type": "string",
+            "description": "Data de emissão",
+            "format": "date-time"
+          },
+          "tipoInscricaoPagador": {
+            "$ref": "#/components/schemas/TipoInscricao"
+          },
+          "numeroInscricaoPagador": {
+            "maxLength": 14,
+            "minLength": 1,
+            "type": "string",
+            "description": "Número inscrição do pagador (CPF/CNPJ)"
+          },
+          "nomePagador": {
+            "maxLength": 60,
+            "minLength": 1,
+            "type": "string",
+            "description": "Nome do pagador"
+          },
+          "enderecoPagador": {
+            "maxLength": 60,
+            "minLength": 1,
+            "type": "string",
+            "description": "Endereço do pagador"
+          },
+          "complementoEnderecoPagador": {
+            "maxLength": 40,
+            "type": "string",
+            "description": "Complemento do endereço do pagador",
+            "nullable": true
+          },
+          "bairroPagador": {
+            "maxLength": 40,
+            "type": "string",
+            "description": "Bairro do pagador",
+            "nullable": true
+          },
+          "cepPagador": {
+            "type": "integer",
+            "description": "CEP do pagador",
+            "format": "int32"
+          },
+          "cidadePagador": {
+            "maxLength": 40,
+            "minLength": 1,
+            "type": "string",
+            "description": "Cidade do pagador"
+          },
+          "ufPagador": {
+            "$ref": "#/components/schemas/UnidadeFederacaoSigla"
+          },
+          "emailPagador": {
+            "maxLength": 120,
+            "type": "string",
+            "description": "E-mail do pagador",
+            "nullable": true
+          },
+          "telefonePagador": {
+            "maxLength": 13,
+            "type": "string",
+            "description": "Telefone do pagador",
+            "nullable": true
+          },
+          "celularPagador": {
+            "maxLength": 13,
+            "type": "string",
+            "description": "Celular do pagador",
+            "nullable": true
+          },
+          "nossoNumero": {
+            "maxLength": 15,
+            "type": "string",
+            "description": "Nosso número",
+            "nullable": true
+          },
+          "tipoMora": {
+            "$ref": "#/components/schemas/TipoJurosMora"
+          },
+          "valorMora": {
+            "type": "number",
+            "description": "Valor mora",
+            "format": "double"
+          },
+          "especie": {
+            "$ref": "#/components/schemas/Especie"
+          },
+          "aceite": {
+            "maxLength": 1,
+            "minLength": 1,
+            "type": "string",
+            "description": "Aceite: A - Aceito ou N - Não aceito"
+          },
+          "tipoInscricaoBeneficiarioFinal": {
+            "$ref": "#/components/schemas/TipoInscricao"
+          },
+          "numeroInscricaoBeneficiarioFinal": {
+            "maxLength": 14,
+            "type": "string",
+            "description": "Número de inscrição do beneficiário final",
+            "nullable": true
+          },
+          "nomeBeneficiarioFinal": {
+            "maxLength": 60,
+            "type": "string",
+            "description": "Nome do beneficiário final",
+            "nullable": true
+          },
+          "enderecoBeneficiarioFinal": {
+            "maxLength": 60,
+            "type": "string",
+            "description": "Endereço do beneficiário final",
+            "nullable": true
+          },
+          "complementoEnderecoBeneficiarioFinal": {
+            "maxLength": 40,
+            "type": "string",
+            "description": "Complemento do endereço do beneficiário final",
+            "nullable": true
+          },
+          "bairroBeneficiarioFinal": {
+            "maxLength": 40,
+            "type": "string",
+            "description": "Bairro do beneficiário final",
+            "nullable": true
+          },
+          "cepBeneficiarioFinal": {
+            "type": "integer",
+            "description": "CEP do beneficiário final",
+            "format": "int32"
+          },
+          "cidadeBeneficiarioFinal": {
+            "maxLength": 40,
+            "type": "string",
+            "description": "Cidade do beneficiário final",
+            "nullable": true
+          },
+          "ufBeneficiarioFinal": {
+            "$ref": "#/components/schemas/UnidadeFederacaoSigla"
+          },
+          "tipoPagamento": {
+            "$ref": "#/components/schemas/TipoPagamento"
+          },
+          "quantidadePagamentosPossiveis": {
+            "type": "integer",
+            "description": "Quantidade de pagamentos possíveis",
+            "format": "int32"
+          },
+          "tipoValorMaximo": {
+            "$ref": "#/components/schemas/TipoValor"
+          },
+          "valorMaximo": {
+            "type": "number",
+            "description": "Valor máximo",
+            "format": "double"
+          },
+          "tipoValorMinimo": {
+            "$ref": "#/components/schemas/TipoValor"
+          },
+          "valorMinimo": {
+            "type": "number",
+            "description": "Valor mínimo",
+            "format": "double"
+          },
+          "valorIOF": {
+            "type": "number",
+            "description": "Valor IOF",
+            "format": "double"
+          },
+          "tipoMulta": {
+            "$ref": "#/components/schemas/TipoMulta"
+          },
+          "valorMulta": {
+            "type": "number",
+            "description": "Valor multa",
+            "format": "double"
+          },
+          "numDiasMulta": {
+            "type": "integer",
+            "description": "Número de dias da multa",
+            "format": "int32"
+          },
+          "tipoPostagem": {
+            "$ref": "#/components/schemas/TipoPostagem"
+          },
+          "mensagem1": {
+            "maxLength": 80,
+            "type": "string",
+            "description": "Mensagem 1",
+            "nullable": true
+          },
+          "mensagem2": {
+            "maxLength": 80,
+            "type": "string",
+            "description": "Mensagem 2",
+            "nullable": true
+          },
+          "mensagem3": {
+            "maxLength": 80,
+            "type": "string",
+            "description": "Mensagem 3",
+            "nullable": true
+          },
+          "mensagem4": {
+            "maxLength": 80,
+            "type": "string",
+            "description": "Mensagem 4",
+            "nullable": true
+          },
+          "transactionID": {
+            "maxLength": 35,
+            "type": "string",
+            "description": "Transaction ID",
+            "nullable": true
+          },
+          "chavePix": {
+            "maxLength": 77,
+            "type": "string",
+            "description": "Chave Pix",
+            "nullable": true
+          },
+          "validadeAposVencimento": {
+            "type": "integer",
+            "description": "Validade após o vencimento",
+            "format": "int32"
+          },
+          "tipoDiasBaixa": {
+            "$ref": "#/components/schemas/TipoDias"
+          },
+          "solicitacaoPagador": {
+            "maxLength": 140,
+            "type": "string",
+            "description": "Solicitação ao Pagador",
+            "nullable": true
+          },
+          "imprimirInformacaoAdicional": {
+            "type": "boolean",
+            "description": "Imprimir informação adicional no boleto"
+          },
+          "informacoesAdicionais": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InformacaoAdicionalDto"
+            },
+            "description": "Informações Adicionais",
+            "nullable": true
+          },
+          "taxaOperacao": {
+            "type": "number",
+            "description": "Taxa da operação",
+            "format": "double"
+          },
+          "taxaCusto": {
+            "type": "number",
+            "description": "Taxa de custo",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Classe dos dados do título"
+      },
+      "InclusaoTitulosAdfDto": {
+        "required": [
+          "operacao"
+        ],
+        "type": "object",
+        "properties": {
+          "operacao": {
+            "$ref": "#/components/schemas/Operacao"
+          }
+        },
+        "additionalProperties": false,
+        "description": "DTO utilizado no response da inclusão de títulos"
+      },
+      "InclusaoTitulosDto": {
+        "required": [
+          "codigoCarteira",
+          "codigoConvenio",
+          "codigoModalidade",
+          "listaTitulos"
+        ],
+        "type": "object",
+        "properties": {
+          "controleInstituicaoFinanceira": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Controle da instituição financeira. Deve ser único",
+            "nullable": true
+          },
+          "codigoConvenio": {
+            "type": "number",
+            "description": "Código do convênio",
+            "format": "double"
+          },
+          "codigoModalidade": {
+            "type": "number",
+            "description": "Código modalidade",
+            "format": "double"
+          },
+          "codigoCarteira": {
+            "$ref": "#/components/schemas/Carteira"
+          },
+          "numeroContrato": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "Número do contrato",
+            "nullable": true
+          },
+          "codigoBeneficiario": {
+            "type": "number",
+            "description": "Código do beneficiário",
+            "format": "double"
+          },
+          "listaTitulos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InclusaoTituloDto"
+            },
+            "description": "Lista de títulos",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "DTO utilizado no response da inclusão de títulos"
+      },
+      "InformacaoAdicionalDto": {
+        "type": "object",
+        "properties": {
+          "nomeCampo": {
+            "maxLength": 50,
+            "type": "string",
+            "nullable": true
+          },
+          "valorCampo": {
+            "maxLength": 200,
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OcorrenciaRemessa": {
+        "enum": [
+          "NaoInformado",
+          "Entrada",
+          "PedidoBaixa",
+          "ConcessaoAbatimento",
+          "CancelamentoAbatimento",
+          "AlteracaoVencimento",
+          "AlteracaoSeuNumero",
+          "Protestar",
+          "NaoProtestar",
+          "CancelarProtestoAutomatico",
+          "SustarProtestoEBaixarTitulo",
+          "SustarProtestoEManterEmCarteira",
+          "AlteracaoDadosPagador",
+          "AlteracaoDeOutrosDados",
+          "BaixaPorTerSidoProtestado",
+          "ConcessaoDesconto",
+          "CancelamentoDesconto",
+          "AlteracaoValorTitulo",
+          "Negativar",
+          "CancelarNegativacaoAutomatica",
+          "RetirarNegativacaoEBaixarTitulo",
+          "RetirarNegativacaoEManterEmCarteira",
+          "LiquidacaoCorrespondente",
+          "LiquidacaoCartorio",
+          "LiquidacaoCompensacao",
+          "LiquidacaoSTR0026",
+          "LiquidacaoCaixa",
+          "LiquidacaoPix",
+          "AlteracaoQrCode",
+          "LiquidacaoTed",
+          "BaixaPorCancelamento",
+          "LiquidacaoAutomatica",
+          "Prejuizo"
+        ],
+        "type": "string"
+      },
+      "Operacao": {
+        "required": [
+          "ancora",
+          "fornecedor",
+          "titulos"
+        ],
+        "type": "object",
+        "properties": {
+          "ancora": {
+            "$ref": "#/components/schemas/Ancora"
+          },
+          "fornecedor": {
+            "$ref": "#/components/schemas/Fornecedor"
+          },
+          "titulos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TitulosAdf"
+            },
+            "description": "Lista de títulos Adf",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Ancora"
+      },
+      "RejeicaoDetalheDto": {
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "integer",
+            "description": "Código da rejeição",
+            "format": "int32"
+          },
+          "descricao": {
+            "type": "string",
+            "description": "Descrição da rejeição",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Detalhe da rejeição"
+      },
+      "RetornoTransacaoDto": {
+        "type": "object",
+        "properties": {
+          "transacao": {
+            "$ref": "#/components/schemas/TransacaoDto"
+          },
+          "titulosEncarteirados": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TituloTransacaoDto"
+            },
+            "description": "Lista dos títulos encarteirados",
+            "nullable": true
+          },
+          "titulosEmAlfandega": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TituloTransacaoDto"
+            },
+            "description": "Lista dos títulos em alfandega",
+            "nullable": true
+          },
+          "titulosComRejeicao": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TituloRejeitadoDto"
+            },
+            "description": "Lista dos títulos rejeitados",
+            "nullable": true
+          },
+          "titulosEmAlfandegaRejeitados": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TituloTransacaoDto"
+            },
+            "description": "Lista dos títulos em alfandega rejeitado",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Dados retornados na inclusão dos títulos"
+      },
+      "TipoAbatimento": {
+        "enum": [
+          "NaoInformado",
+          "ValorFixo",
+          "Percentual",
+          "Isento"
+        ],
+        "type": "string"
+      },
+      "TipoDesconto": {
+        "enum": [
+          "SemDesconto",
+          "ValorFixoAteDataInformada",
+          "PercentualAteDataInformada",
+          "ValorPorAntecipacaoDiaCorrido",
+          "ValorPorAntecipacaoDiaUtil",
+          "PercentualPorAntecipacaoDiaCorrido",
+          "PercentualPorAntecipacaoDiaUtil"
+        ],
+        "type": "string"
+      },
+      "TipoDias": {
+        "enum": [
+          "Uteis",
+          "Corridos"
+        ],
+        "type": "string"
+      },
+      "TipoInscricao": {
+        "enum": [
+          "NaoInformado",
+          "PessoaFisica",
+          "PessoaJuridica"
+        ],
+        "type": "string"
+      },
+      "TipoJurosMora": {
+        "enum": [
+          "NaoInformado",
+          "ValorDiasCorridos",
+          "PercentualDiarioDiasCorridos",
+          "PercentualMensalDiasCorridos",
+          "PercentualAnualDiasCorridos",
+          "Isento",
+          "ValorDiasUteis",
+          "PercentualDiarioDiasUteis",
+          "PercentualMensalDiasUteis",
+          "PercentualAnualDiasUteis"
+        ],
+        "type": "string"
+      },
+      "TipoMulta": {
+        "enum": [
+          "NaoInformado",
+          "ValorFixo",
+          "Percentual",
+          "Isento"
+        ],
+        "type": "string"
+      },
+      "TipoPagamento": {
+        "enum": [
+          "NaoInformado",
+          "AceitaQualquerValor",
+          "EntreOMinimoEOMaximo",
+          "NaoAceitaPagamentoComOValorDivergente",
+          "SomenteValorMinimo"
+        ],
+        "type": "string"
+      },
+      "TipoPostagem": {
+        "enum": [
+          "Nenhuma",
+          "BancoEmiteBoleto",
+          "BeneficiarioEmiteBoleto",
+          "BancoEmiteViaEmail",
+          "BancoEnviaEmailESMS",
+          "BancoEnviaSMS",
+          "BancoImprimeEnviaEmail",
+          "BancoImprimeEnviaSMS",
+          "BancoImprimeEnviaEmailSMS"
+        ],
+        "type": "string"
+      },
+      "TipoProtesto": {
+        "enum": [
+          "NaoInformado",
+          "ProtestarDiasCorridos",
+          "ProtestarDiasUteis",
+          "NaoProtestar",
+          "NaoNegativar",
+          "NegativacaoDiasCorridos",
+          "NegativacaoDiasUteis"
+        ],
+        "type": "string"
+      },
+      "TipoValor": {
+        "enum": [
+          "NaoInformado",
+          "Percentual",
+          "Valor"
+        ],
+        "type": "string"
+      },
+      "TituloRejeitadoDto": {
+        "type": "object",
+        "properties": {
+          "idTitulo": {
+            "type": "number",
+            "description": "Identificador do título",
+            "format": "double"
+          },
+          "codigoConvenio": {
+            "type": "number",
+            "description": "Código do convênio",
+            "format": "double"
+          },
+          "seuNumero": {
+            "type": "string",
+            "description": "Seu número",
+            "nullable": true
+          },
+          "valorTitulo": {
+            "type": "number",
+            "description": "Valor do Título",
+            "format": "double"
+          },
+          "vencimento": {
+            "type": "string",
+            "description": "Vencimento",
+            "format": "date-time"
+          },
+          "numeroInscricaoPagador": {
+            "type": "string",
+            "description": "Número Inscrição Pagador (CPF/CNPJ)",
+            "nullable": true
+          },
+          "ocorrencia": {
+            "$ref": "#/components/schemas/OcorrenciaRemessa"
+          },
+          "nossoNumero": {
+            "type": "string",
+            "description": "Nosso número",
+            "nullable": true
+          },
+          "rejeicoes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RejeicaoDetalheDto"
+            },
+            "description": "Lista das rejeições",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Título rejeitado - Campos de identificação enviados, mais a lista das rejeições"
+      },
+      "TituloTransacaoDto": {
+        "type": "object",
+        "properties": {
+          "idTitulo": {
+            "type": "number",
+            "description": "Identificador do título",
+            "format": "double"
+          },
+          "codigoConvenio": {
+            "type": "number",
+            "description": "Código do convênio",
+            "format": "double"
+          },
+          "seuNumero": {
+            "type": "string",
+            "description": "Seu número",
+            "nullable": true
+          },
+          "valorTitulo": {
+            "type": "number",
+            "description": "Valor do Título",
+            "format": "double"
+          },
+          "vencimento": {
+            "type": "string",
+            "description": "Vencimento",
+            "format": "date-time"
+          },
+          "numeroInscricaoPagador": {
+            "type": "string",
+            "description": "Número Inscrição Pagador (CPF/CNPJ)",
+            "nullable": true
+          },
+          "ocorrencia": {
+            "$ref": "#/components/schemas/OcorrenciaRemessa"
+          },
+          "nossoNumero": {
+            "type": "string",
+            "description": "Nosso número",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Título aprovados - Campos de identificação enviados, mais os gerados pelo sistema."
+      },
+      "TitulosAdf": {
+        "required": [
+          "dataVencimento",
+          "seuNumero",
+          "valorFace",
+          "valorLiquido"
+        ],
+        "type": "object",
+        "properties": {
+          "seuNumero": {
+            "maxLength": 44,
+            "minLength": 1,
+            "type": "string",
+            "description": "Seu número"
+          },
+          "dataVencimento": {
+            "type": "string",
+            "description": "Data de vencimento",
+            "format": "date-time"
+          },
+          "valorFace": {
+            "type": "number",
+            "description": "Valor de face do título",
+            "format": "double"
+          },
+          "valorLiquido": {
+            "type": "number",
+            "description": "Valor liquido do título",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Classe dos dados do título Adf"
+      },
+      "TransacaoDto": {
+        "type": "object",
+        "properties": {
+          "controleInstituicaoFinanceira": {
+            "type": "string",
+            "description": "Controle da instituição financeira. Deve ser único",
+            "nullable": true
+          },
+          "dataHoraInicio": {
+            "type": "string",
+            "description": "Data e hora do início da transação",
+            "format": "date-time"
+          },
+          "dataHoraFim": {
+            "type": "string",
+            "description": "Data e hora do final da transação",
+            "format": "date-time",
+            "nullable": true
+          },
+          "descricao": {
+            "type": "string",
+            "description": "Descrição da transação",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "description": "Status da transação",
+            "nullable": true
+          },
+          "quantidadeTitulosEnviados": {
+            "type": "number",
+            "description": "Quantidade de títulos enviados",
+            "format": "double"
+          },
+          "dataHoraInicioValidacao": {
+            "type": "string",
+            "description": "Data e hora de início da validação",
+            "format": "date-time",
+            "nullable": true
+          },
+          "quantidadeTitulosValidacao": {
+            "type": "number",
+            "description": "Quantidade de títulos em validação",
+            "format": "double"
+          },
+          "dataHoraFimValidacao": {
+            "type": "string",
+            "description": "Data e hora de fim da validação",
+            "format": "date-time",
+            "nullable": true
+          },
+          "dataHoraInicioAlfandega": {
+            "type": "string",
+            "description": "Data e hora de início da boletagem",
+            "format": "date-time",
+            "nullable": true
+          },
+          "quantidadeTitulosAlfandega": {
+            "type": "number",
+            "description": "Quantidade de títulos em boletagem",
+            "format": "double"
+          },
+          "dataHoraFimAlfandega": {
+            "type": "string",
+            "description": "Data e hora de fim da boletagem",
+            "format": "date-time",
+            "nullable": true
+          },
+          "dataHoraInicioGravacao": {
+            "type": "string",
+            "description": "Data e hora de início da gravação",
+            "format": "date-time",
+            "nullable": true
+          },
+          "quantidadeTitulosGravacao": {
+            "type": "number",
+            "description": "Quantidade de títulos em gravação",
+            "format": "double"
+          },
+          "dataHoraFimGravacao": {
+            "type": "string",
+            "description": "Data e hora de fim da gravação",
+            "format": "date-time",
+            "nullable": true
+          },
+          "quantidadeAprovados": {
+            "type": "number",
+            "description": "Quantidade de títulos aprovados",
+            "format": "double"
+          },
+          "quantidadeRejeitados": {
+            "type": "number",
+            "description": "Quantidade de títulos rejeitados",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Campos da transação"
+      },
+      "UnidadeFederacaoSigla": {
+        "enum": [
+          "AC",
+          "AL",
+          "AP",
+          "AM",
+          "BA",
+          "CE",
+          "DF",
+          "ES",
+          "GO",
+          "MA",
+          "MT",
+          "MS",
+          "MG",
+          "PA",
+          "PB",
+          "PR",
+          "PE",
+          "PI",
+          "RJ",
+          "RN",
+          "RS",
+          "RO",
+          "RR",
+          "SC",
+          "SP",
+          "SE",
+          "TO",
+          "NaoInformado"
+        ],
+        "type": "string"
+      }
+    },
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "InclusaoTitulo",
+      "description": "APIs utilizadas para inclusão de títulos"
+    },
+    {
+      "name": "Transacao",
+      "description": "APIs utilizadas para tratamento das transações"
+    },
+    {
+      "name": "InclusaoTituloAdf",
+      "description": "APIs utilizadas para inclusão de títulos ADF"
+    }
+  ]
+}
